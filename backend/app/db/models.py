@@ -11,7 +11,11 @@ from sqlalchemy import create_engine, Column, String, DateTime, Text, Integer, F
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./rune.db")
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False} if "sqlite" in DATABASE_URL else {})
+
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"check_same_thread": False} if "sqlite" in DATABASE_URL else {"connect_timeout": 10},
+)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 
@@ -30,9 +34,9 @@ class Session(Base):
 
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
     user_id = Column(String, ForeignKey("users.id"), nullable=True)  # nullable so
-                                                                       # existing rows
-                                                                       # from before
-                                                                       # auth don't break
+    # existing rows
+    # from before
+    # auth don't break
     title = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
