@@ -6,7 +6,6 @@ Research agent pull relevant past context before doing fresh web searches.
 import os
 import faiss
 import numpy as np
-from sentence_transformers import SentenceTransformer
 
 INDEX_PATH = "rune_memory.index"
 DOCS_PATH = "rune_memory_docs.npy"
@@ -16,11 +15,13 @@ _model = None
 
 
 def _get_model():
-    """Lazily loads the sentence transformer model on first use, rather than
-    at import time - this lets the server bind its port and report healthy
-    immediately, instead of blocking startup on a model download."""
+    """Lazily imports and loads the sentence transformer model on first use,
+    rather than at import time - this lets the server bind its port and
+    report healthy immediately, instead of blocking startup on the slow
+    torch/transformers import plus the model download."""
     global _model
     if _model is None:
+        from sentence_transformers import SentenceTransformer
         _model = SentenceTransformer("all-MiniLM-L6-v2")
     return _model
 
