@@ -1,0 +1,38 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #FAFAF8;
+  color: #1C1917;
+}
+
+.serif { font-family: 'Cormorant Garamond', serif; }
+.mono { font-family: 'Space Mono', monospace; }
+
+@keyframes rune-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.markdown-answer p { margin-bottom: 0.9em; }
+.markdown-answer p:last-child { margin-bottom: 0; }
+.markdown-answer h1, .markdown-answer h2, .markdown-answer h3 {
+  font-weight: 600; margin: 1em 0 0.5em; color: #1C1917;
+}
+.markdown-answer ul, .markdown-answer ol {
+  margin: 0.5em 0 0.9em; padding-left: 1.4em;
+}
+.markdown-answer li { margin-bottom: 0.3em; }
+.markdown-answer strong { font-weight: 600; }
+.markdown-answer code {
+  background: #F0EDE5; padding: 2px 6px; border-radius: 4px;
+  font-family: 'Space Mono', monospace; font-size: 0.9em;
+}
+.markdown-answer pre {
+  background: #F0EDE5; padding: 12px 14px; border-radius: 8px;
+  overflow-x: auto; margin: 0.8em 0;
+}
+.markdown-answer a { color: #6b7a54; text-decoration: underline; }
+.markdown-answer blockquote {
+  border-left: 2px solid #d8d2c4; padding-left: 12px; color: #8a8578; margin: 0.8em 0;
+}

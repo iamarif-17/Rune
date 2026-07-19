@@ -1,0 +1,15 @@
+# backend
+backend/venv/
+backend/.env
+backend/rune.db
+backend/rune_memory.index
+backend/rune_memory_docs.npy
+backend/eval/results.json
+__pycache__/
+*.pyc
+
+# frontend
+frontend/node_modules/
+frontend/dist/
+
+.DS_Store

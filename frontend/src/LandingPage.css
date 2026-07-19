@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Space+Mono&family=DM+Sans:wght@400;500&display=swap');
+
+.landing {
+  min-height: 100vh;
+  background: #ffffff;
+  color: #1c1917;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.landing .serif,
+.landing-headline,
+.landing-section-title {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.landing-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 3rem;
+}
+
+.landing-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.landing-logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.landing-nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.landing-nav-links a {
+  color: #1c1917;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.landing-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.landing-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #1c1917;
+  padding: 0;
+}
+
+.landing-cta-btn,
+.landing-ask-btn,
+.landing-plan-cta {
+  background: #A8B79A;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.3rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.landing-cta-btn:hover,
+.landing-ask-btn:hover,
+.landing-plan-cta:hover {
+  background: #94A583;
+}
+
+/* HERO — fills the remaining viewport height below the nav, so only this
+   shows on first load. "How it works" / "Pricing" only appear on scroll. */
+.landing-hero {
+  min-height: calc(100vh - 88px); /* 88px ≈ nav height; adjust if your nav is taller/shorter */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 3rem;
+  max-width: 900px;
+}
+
+.landing-headline {
+  font-size: 4.5rem;
+  line-height: 1.08;
+  font-weight: 600;
+  margin: 0 0 1.5rem;
+}
+
+.landing-subhead {
+  font-size: 1.1rem;
+  color: #4a4a4a;
+  margin: 0 0 2.5rem;
+}
+
+.landing-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff;
+  border: 1px solid #e5e2da;
+  border-radius: 12px;
+  padding: 0.4rem 0.4rem 0.4rem 1.1rem;
+  max-width: 500px;
+}
+
+.landing-input-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #1c1917;
+  background: transparent;
+  padding: 0.25rem 0;
+}
+
+.landing-input-bar input::placeholder {
+  color: #a3a3a3;
+}
+
+.landing-ask-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.landing-quick-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.landing-quick-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: transparent;
+  border: 1px solid #e5e2da;
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: #1c1917;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.landing-quick-btn:hover {
+  background: #f7f5f0;
+  border-color: #d8d2c4;
+}
+
+.landing-quick-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+.landing-section {
+  padding: 3rem 3rem 5rem;
+  max-width: 1000px;
+}
+
+.landing-section-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 0 0 2.5rem;
+}
+
+.landing-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.landing-step h3 {
+  margin: 0 0 0.35rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.landing-step p {
+  margin: 0;
+  color: #4a4a4a;
+  font-size: 0.98rem;
+}
+
+.landing-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.landing-price-card {
+  border: 1px solid #e5e2da;
+  border-radius: 12px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-price-card.highlight {
+  border-color: #A8B79A;
+  box-shadow: 0 0 0 1px #A8B79A;
+}
+
+.landing-price-card h3 {
+  margin: 0 0 0.75rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.landing-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.landing-price {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.landing-cadence {
+  color: #7a7a7a;
+  font-size: 0.85rem;
+}
+
+.landing-plan-blurb {
+  color: #4a4a4a;
+  font-size: 0.9rem;
+  margin: 0 0 1.25rem;
+}
+
+.landing-feature-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.landing-feature-list li {
+  font-size: 0.9rem;
+  color: #333;
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.landing-feature-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #A8B79A;
+}
+
+.landing-plan-cta {
+  align-self: stretch;
+}
+
+.landing-footer {
+  padding: 2rem 3rem 3rem;
+  color: #a3a3a3;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 720px) {
+  .landing-nav,
+  .landing-hero,
+  .landing-section,
+  .landing-footer {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .landing-nav-links {
+    display: none;
+  }
+  .landing-hero {
+    min-height: calc(100vh - 72px);
+  }
+  .landing-headline {
+    font-size: 2.8rem;
+  }
+  .landing-subhead {
+    font-size: 1.05rem;
+  }
+  .landing-input-bar {
+    max-width: 100%;
+  }
+  .landing-quick-actions {
+    flex-wrap: wrap;
+  }
+  .landing-pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}

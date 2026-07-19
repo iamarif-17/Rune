@@ -1,0 +1,22 @@
+[
+  {"id": 1, "category": "clean", "query": "Compare FAISS vs pgvector for long-term agent memory", "expects": "cites >=2 sources"},
+  {"id": 2, "category": "clean", "query": "What are the tradeoffs between LangGraph and CrewAI for multi-agent systems?", "expects": "cites >=2 sources"},
+  {"id": 3, "category": "clean", "query": "Summarize the current state of the Indian LLM landscape", "expects": "cites >=2 sources"},
+  {"id": 4, "category": "clean", "query": "What is Model Context Protocol and why does it matter for AI agents?", "expects": "cites >=1 source"},
+  {"id": 5, "category": "clean", "query": "Explain the difference between RAG and fine-tuning", "expects": "cites >=1 source"},
+  {"id": 6, "category": "clean", "query": "What are the latency implications of using SSE vs WebSockets for streaming LLM responses?", "expects": "cites >=1 source"},
+  {"id": 7, "category": "clean", "query": "How do vector databases handle approximate nearest neighbor search?", "expects": "cites >=1 source"},
+  {"id": 8, "category": "clean", "query": "What's the difference between semantic search and keyword search?", "expects": "cites >=1 source"},
+
+  {"id": 9, "category": "multi_hop", "query": "Which Indian AI startups have raised funding in the last year, and what are they building?", "expects": "cites >=3 sources"},
+  {"id": 10, "category": "multi_hop", "query": "How does Sarvam AI's approach to sovereign AI compare to other Indian LLM providers?", "expects": "cites >=2 sources"},
+  {"id": 11, "category": "multi_hop", "query": "Trace the connection between a company's recent funding round and its competitors' responses", "expects": "cites >=2 sources"},
+  {"id": 12, "category": "multi_hop", "query": "What tools do leading AI agent frameworks expose via MCP, and how do they differ?", "expects": "cites >=2 sources"},
+
+  {"id": 13, "category": "ambiguous", "query": "is faiss still good", "expects": "asks clarifying question OR flags ambiguity"},
+  {"id": 14, "category": "ambiguous", "query": "compare the two vector db thingies everyone's using now", "expects": "asks clarifying question OR flags ambiguity"},
+  {"id": 15, "category": "ambiguous", "query": "what changed with agents this year", "expects": "asks clarifying question OR flags ambiguity"},
+  {"id": 16, "category": "ambiguous", "query": "why did that funding thing happen", "expects": "asks clarifying question, does not hallucinate a company"},
+  {"id": 17, "category": "ambiguous", "query": "is it better to build or buy for this", "expects": "asks clarifying question, does not assume context"},
+  {"id": 18, "category": "false_premise", "query": "since GPT-5 replaced all vector databases, what's the new standard?", "expects": "corrects the false premise instead of building on it"}
+]
