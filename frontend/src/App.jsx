@@ -6,6 +6,8 @@ import ChatThread from './components/ChatThread.jsx'
 import InputBar from './components/InputBar.jsx'
 import SettingsModal from './components/SettingsModal.jsx'
 
+const API_URL = import.meta.env.VITE_API_URL || ''
+
 const GREETINGS = [
   'What should we look into?',
   'Where should we begin?',
@@ -86,7 +88,7 @@ export default function App() {
     try {
       const depth = localStorage.getItem('rune_depth') || 'deep'
       const token = localStorage.getItem('rune_token')
-      const res = await fetch('/query', {
+      const res = await fetch(`${API_URL}/query`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -140,7 +142,7 @@ export default function App() {
   async function handleLoadSession(id) {
     try {
       const token = localStorage.getItem('rune_token')
-      const res = await fetch(`/sessions/${id}`, {
+      const res = await fetch(`${API_URL}/sessions/${id}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       })
       if (res.status === 401) {
