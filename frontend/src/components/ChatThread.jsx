@@ -1,6 +1,8 @@
 import ReactMarkdown from 'react-markdown'
 import { useState, useRef } from 'react'
 
+const API_URL = import.meta.env.VITE_API_URL || ''
+
 function stripCitations(text) {
   // Matches [1], [1, 3], [2] etc. and removes them along with the space before.
   return text.replace(/\s?\[\d+(?:,\s*\d+)*\]/g, '')
@@ -71,7 +73,7 @@ function AnswerBlock({ text }) {
     setTtsLoading(true)
     try {
       const token = localStorage.getItem('rune_token')
-      const res = await fetch('/tts', {
+      const res = await fetch(`${API_URL}/tts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

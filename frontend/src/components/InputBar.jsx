@@ -1,5 +1,7 @@
 import { useState, useRef } from 'react'
 
+const API_URL = import.meta.env.VITE_API_URL || ''
+
 export default function InputBar({ onSend, disabled }) {
   const [value, setValue] = useState('')
   const [recording, setRecording] = useState(false)
@@ -61,7 +63,7 @@ export default function InputBar({ onSend, disabled }) {
       formData.append('file', audioBlob, 'recording.webm')
       formData.append('language_code', 'unknown')
 
-      const res = await fetch('/stt', {
+      const res = await fetch(`${API_URL}/stt`, {
         method: 'POST',
         headers: token ? { Authorization: `Bearer ${token}` } : {},
         body: formData,

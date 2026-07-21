@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 
+const API_URL = import.meta.env.VITE_API_URL || ''
+
 export default function Sidebar({ open, onNewResearch, onLoadSession, activeSessionId, onOpenSettings, onLogout, refreshKey }) {
   const [sessions, setSessions] = useState([])
   const [username, setUsername] = useState(() => localStorage.getItem('rune_username') || 'Account')
 
   useEffect(() => {
     const token = localStorage.getItem('rune_token')
-    fetch('/sessions', {
+    fetch(`${API_URL}/sessions`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     })
       .then(r => r.json())

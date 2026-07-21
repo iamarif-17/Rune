@@ -5,7 +5,7 @@ import './AuthPage.css'
 const GOOGLE_CLIENT_ID = '954452848625-v9trdq0okep1ikef5525rnud9n2baos5.apps.googleusercontent.com'
 
 // Your FastAPI backend — change the port here if uvicorn is running on a different one
-const API_URL = 'http://localhost:8000'
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 export default function AuthPage({ mode: initialMode = 'login', onAuthed, onBack }) {
   const [mode, setMode] = useState(initialMode)
