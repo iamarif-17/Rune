@@ -87,7 +87,7 @@ python -m app.mcp_server.server
 ```
 
 ## Live deployment
-Live at https://rune-umber.vercel.app. Frontend on Vercel, backend on Render,
+Live at https://rune-lemon.vercel.app. Frontend on Vercel, backend on Render,
 Postgres on Neon. Env vars are managed via each platform's secret manager,
 never committed to git.
 
