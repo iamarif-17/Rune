@@ -20,7 +20,8 @@ LangGraph state machine:
                    (loops back if critique fails,
                     up to MAX_CRITIQUE_ITERATIONS times)
 
-  research node calls tools via MCP server (FAISS long-term memory + web search)
+  research node calls web search (Tavily) + FAISS long-term memory directly;
+  FAISS memory is also exposed standalone via an MCP server for external clients
   all nodes log to a shared trace, streamed step-by-step to the client via SSE
   and saved to Postgres for session replay
 ```
@@ -85,12 +86,21 @@ cd backend
 python -m app.mcp_server.server
 ```
 
+## Live deployment
+Live at https://rune-umber.vercel.app. Frontend on Vercel, backend on Render,
+Postgres on Neon. Env vars are managed via each platform's secret manager,
+never committed to git.
+
 ## Known limitations / next steps
 - Test coverage is currently light (a handful of pytest tests) — broader
   node/tool-level testing is the next priority.
-- Not yet deployed — intended for Vercel (frontend) + Render (backend), with
-  a managed Postgres instance (Neon) already provisioned. Env vars are
-  managed via each platform's secret manager, never committed to git.
+- CORS is currently wide open (`allow_origins="*"`) — needs tightening to the
+  actual frontend origin before this would be production-ready.
+- No refresh tokens or token revocation on the JWT auth, and no rate limiting
+  specifically on login attempts (rate limiting elsewhere in the API uses
+  slowapi).
+- The FAISS index and the research cache are both single-process — a
+  multi-instance deployment would need a shared store (e.g. Redis) instead.
 
 ## Stack
 React (Vercel) · FastAPI (Render) · LangGraph · Gemini · FAISS · MCP ·
