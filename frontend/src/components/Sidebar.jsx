@@ -11,8 +11,16 @@ export default function Sidebar({ open, onNewResearch, onLoadSession, activeSess
     fetch(`${API_URL}/sessions`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     })
-      .then(r => r.json())
-      .then(setSessions)
+      .then(r => {
+        if (r.status === 401) {
+          onLogout()
+          return null
+        }
+        return r.json()
+      })
+      .then(data => {
+        if (Array.isArray(data)) setSessions(data)
+      })
       .catch(() => {})
   }, [refreshKey])
 
