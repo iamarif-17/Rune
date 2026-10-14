@@ -139,28 +139,30 @@ export default function App() {
     setSessionId(null)
   }
 
-  async function handleLoadSession(id) {
-    try {
-      const token = localStorage.getItem('rune_token')
-      const res = await fetch(`${API_URL}/sessions/${id}`, {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      })
-      if (res.status === 401) {
-        handleLogout()
-        return
-      }
-      const data = await res.json()
-      const mapped = data.map(m => ({
-        query: m.query,
-        steps: m.trace || [],
-        answer: m.final_answer,
-      }))
-      setMessages(mapped)
-      setSessionId(id)
-    } catch (err) {
-      console.error('Failed to load session:', err)
+ async function handleLoadSession(id) {
+  try {
+    const token = localStorage.getItem('rune_token')
+    const res = await fetch(`${API_URL}/sessions/${id}`, {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    })
+    if (res.status === 401) {
+      handleLogout()
+      return
     }
+    if (!res.ok) return
+    const data = await res.json()
+    if (!Array.isArray(data)) return
+    const mapped = data.map(m => ({
+      query: m.query,
+      steps: m.trace || [],
+      answer: m.final_answer,
+    }))
+    setMessages(mapped)
+    setSessionId(id)
+  } catch (err) {
+    console.error('Failed to load session:', err)
   }
+}
 
   function handleSettingsSaved() {
     setGreeting(getGreeting())
