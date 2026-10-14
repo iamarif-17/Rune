@@ -344,6 +344,6 @@ def get_session(session_id: str, user_id: str = Depends(get_current_user)):
         db.close()
 
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 def health():
     return {"status": "ok"}
