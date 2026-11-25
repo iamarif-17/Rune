@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "category": "clean",
+    "query": "Compare FAISS vs pgvector for long-term agent memory",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 38.07,
+    "tokens_used": 5109
+  },
+  {
+    "id": 2,
+    "category": "clean",
+    "query": "What are the tradeoffs between LangGraph and CrewAI for multi-agent systems?",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 37.61,
+    "tokens_used": 5617
+  },
+  {
+    "id": 3,
+    "category": "clean",
+    "query": "Summarize the current state of the Indian LLM landscape",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 30.78,
+    "tokens_used": 6411
+  },
+  {
+    "id": 4,
+    "category": "clean",
+    "query": "What is Model Context Protocol and why does it matter for AI agents?",
+    "passed": true,
+    "reason": "got 6 citations, needed 1",
+    "latency_s": 10.75,
+    "tokens_used": 3568
+  },
+  {
+    "id": 5,
+    "category": "clean",
+    "query": "Explain the difference between RAG and fine-tuning",
+    "passed": true,
+    "reason": "got 9 citations, needed 1",
+    "latency_s": 10.96,
+    "tokens_used": 5940
+  },
+  {
+    "id": 6,
+    "category": "clean",
+    "query": "What are the latency implications of using SSE vs WebSockets for streaming LLM responses?",
+    "passed": true,
+    "reason": "got 9 citations, needed 1",
+    "latency_s": 35.19,
+    "tokens_used": 6313
+  },
+  {
+    "id": 7,
+    "category": "clean",
+    "query": "How do vector databases handle approximate nearest neighbor search?",
+    "passed": true,
+    "reason": "got 9 citations, needed 1",
+    "latency_s": 23.25,
+    "tokens_used": 5664
+  },
+  {
+    "id": 8,
+    "category": "clean",
+    "query": "What's the difference between semantic search and keyword search?",
+    "passed": true,
+    "reason": "got 9 citations, needed 1",
+    "latency_s": 19.37,
+    "tokens_used": 4477
+  },
+  {
+    "id": 9,
+    "category": "multi_hop",
+    "query": "Which Indian AI startups have raised funding in the last year, and what are they building?",
+    "passed": true,
+    "reason": "got 6 citations, needed 3",
+    "latency_s": 17.71,
+    "tokens_used": 4472
+  },
+  {
+    "id": 10,
+    "category": "multi_hop",
+    "query": "How does Sarvam AI's approach to sovereign AI compare to other Indian LLM providers?",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 34.0,
+    "tokens_used": 5492
+  },
+  {
+    "id": 11,
+    "category": "multi_hop",
+    "query": "Trace the connection between a company's recent funding round and its competitors' responses",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 21.11,
+    "tokens_used": 7407
+  },
+  {
+    "id": 12,
+    "category": "multi_hop",
+    "query": "What tools do leading AI agent frameworks expose via MCP, and how do they differ?",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 18.68,
+    "tokens_used": 4989
+  },
+  {
+    "id": 13,
+    "category": "ambiguous",
+    "query": "is faiss still good",
+    "passed": false,
+    "reason": "answered confidently without flagging ambiguity",
+    "latency_s": 12.36,
+    "tokens_used": 5472
+  },
+  {
+    "id": 14,
+    "category": "ambiguous",
+    "query": "compare the two vector db thingies everyone's using now",
+    "passed": false,
+    "reason": "answered confidently without flagging ambiguity",
+    "latency_s": 17.08,
+    "tokens_used": 2736
+  },
+  {
+    "id": 15,
+    "category": "ambiguous",
+    "query": "what changed with agents this year",
+    "passed": false,
+    "reason": "answered confidently without flagging ambiguity",
+    "latency_s": 11.7,
+    "tokens_used": 6187
+  },
+  {
+    "id": 16,
+    "category": "ambiguous",
+    "query": "why did that funding thing happen",
+    "passed": false,
+    "reason": "answered confidently without flagging ambiguity",
+    "latency_s": 9.33,
+    "tokens_used": 2399
+  },
+  {
+    "id": 17,
+    "category": "ambiguous",
+    "query": "is it better to build or buy for this",
+    "passed": false,
+    "reason": "answered confidently without flagging ambiguity",
+    "latency_s": 7.92,
+    "tokens_used": 2492
+  },
+  {
+    "id": 18,
+    "category": "false_premise",
+    "query": "since GPT-5 replaced all vector databases, what's the new standard?",
+    "passed": false,
+    "reason": "answered confidently without flagging ambiguity",
+    "latency_s": 7.52,
+    "tokens_used": 2849
+  }
+]

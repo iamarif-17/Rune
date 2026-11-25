@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "category": "clean",
+    "query": "Compare FAISS vs pgvector for long-term agent memory",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 14.71,
+    "tokens_used": 6272,
+    "answer": "When choosing between FAISS and pgvector for long-term agent memory, the decision primarily depends on your scale, infrastructure complexity, and need for transactional guarantees. \n\n**FAISS** is a high-performance library created by Meta designed for billion-scale similarity search [1]. It offers advanced GPU acceleration [2] and extreme speeds, but it is fundamentally a similarity search library rather than a database [7]. This means it lacks built-in ACID guarantees, automatic persistence (requiring manual index saving), and native concurrency or distributed sharding, leaving infrastructure management up to the developer [7, 9]. \n\n**pgvector**, on the other hand, operates as an extension inside PostgreSQL, bringing the reliability of a mature relational database to vector search [5]. It provides native ACID compliance, automatic persistence via Write-Ahead Logs, and easy integration with existing relational data\u2014scaling vertically or horizontally just like standard PostgreSQL [7, 9]. While pgvector may trail dedicated search libraries in raw query throughput [7], it is ideal for teams seeking to avoid operational complexity by keeping application state and long-term memory unified in a single database."
+  },
+  {
+    "id": 2,
+    "category": "clean",
+    "query": "What are the tradeoffs between LangGraph and CrewAI for multi-agent systems?",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 12.64,
+    "tokens_used": 5660,
+    "answer": "When choosing between LangGraph and CrewAI for multi-agent systems, the decision largely depends on your need for architectural control versus rapid prototyping speed [7]. \n\n* **Control Flow and Architecture:** LangGraph uses a low-level, state-centric graph architecture (`StateGraph`) where developers explicitly define nodes, edges, loops, and branches [1, 2, 3]. In contrast, CrewAI relies on an intuitive, role-based model where autonomous agents collaborate within teams (Crews) or structured event-driven workflows (Flows) [2, 3, 7].\n* **State Management and Persistence:** LangGraph features robust, fine-grained state checkpointing at every node, enabling advanced capabilities like true pause/resume, human-in-the-loop interventions, and time-travel debugging [1, 3, 7]. CrewAI also supports state and human-in-the-loop interactions (such as through Flows and manager roles), but its checkpointing is coarser-grained [1, 7].\n* **Use Case Fit:** LangGraph is ideal for complex, production-grade enterprise applications requiring strict traceability, error handling, and non-linear logic (e.g., financial reviews or compliance pipelines) [3, 8, 9]. CrewAI excels at rapid prototyping, marketing, content generation, and scenarios where speed and a pre-configured team of specialized agents matter more than building custom graph code [2, 7, 8]."
+  },
+  {
+    "id": 3,
+    "category": "clean",
+    "query": "Summarize the current state of the Indian LLM landscape",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 8.93,
+    "tokens_used": 6105,
+    "answer": "The Indian LLM landscape is experiencing rapid growth, driven by a strong national push for sovereign AI models and significant domestic and private investments [1, 2, 4]. Key homegrown initiatives include Sarvam AI's open-source release of 30B and 105B parameter models (such as the Apache 2.0-licensed Sarvam-105B) and BharatGen\u2019s Param2, a 17 billion parameter Mixture of Experts model supporting 22 Indian languages for public service deployment [1, 2, 9]. Additionally, companies like Gnani.ai are introducing speech-native systems, while broader ecosystem support is bolstered by government funding through the IndiaAI Mission, public-private computing capacity expansions, and major private investments like Google's AI Hub in Visakhapatnam [1, 4, 5]."
+  },
+  {
+    "id": 4,
+    "category": "clean",
+    "query": "What is Model Context Protocol and why does it matter for AI agents?",
+    "passed": true,
+    "reason": "got 9 citations, needed 1",
+    "latency_s": 11.78,
+    "tokens_used": 5788,
+    "answer": "The **Model Context Protocol (MCP)**\u2014an open standard introduced by Anthropic\u2014is a universal adapter that enables AI models and agents to securely connect with external tools, data sources, and applications [1, 2, 5]. Operating on a client-server architecture built on JSON-RPC 2.0, MCP replaces fragmented, custom-built integrations with a standardized \"language\" for data and function exchange [2, 5]. \n\nMCP matters for AI agents because it solves the unsustainable \"M\u00d7N integration problem,\" allowing developers to expose capabilities once via an MCP server and reuse them across multiple AI models and platforms [4, 5, 6]. By standardizing how agents discover tools, fetch read-only resources, and execute workflows, MCP significantly reduces integration complexity, cuts development and maintenance debt, and turns isolated chatbots into capable automated agents [2, 4, 5, 6]."
+  },
+  {
+    "id": 5,
+    "category": "clean",
+    "query": "Explain the difference between RAG and fine-tuning",
+    "passed": true,
+    "reason": "got 9 citations, needed 1",
+    "latency_s": 12.93,
+    "tokens_used": 4932,
+    "answer": "Retrieval-Augmented Generation (RAG) and fine-tuning are two distinct methods used to adapt large language models (LLMs) with external or domain-specific data, but they operate through fundamentally different mechanisms. \n\nRAG acts as an open-book system that connects an LLM to external, up-to-date knowledge bases in real-time; when a user submits a query, relevant documents are retrieved and injected into the prompt as context [1, 2, 3]. This allows the model to instantly reflect new data by simply updating the underlying database without requiring model retraining [2, 7, 9]. In contrast, fine-tuning is a supervised process that permanently alters a model's weights by training it on task-specific datasets to adapt its behavior, style, or capability for specific tasks like legal Q&As or sentiment analysis [4, 5, 6]. While RAG excels in data freshness, citation tracking, and handling frequently changing information, fine-tuning is better suited for achieving a specific output format, specialized reasoning, and lower query latency from smaller models [7]. Rather than a strict binary choice, these approaches are often layered together in production systems [7]."
+  },
+  {
+    "id": 6,
+    "category": "clean",
+    "query": "What are the latency implications of using SSE vs WebSockets for streaming LLM responses?",
+    "passed": true,
+    "reason": "got 9 citations, needed 1",
+    "latency_s": 13.6,
+    "tokens_used": 5907,
+    "answer": "When evaluating the latency implications of Server-Sent Events (SSE) versus WebSockets for streaming LLM responses, both protocols deliver identical performance regarding the Time-to-First-Token (TTFT), which is the primary metric governing user-perceived responsiveness [7]. Although WebSockets can be marginally faster on paper by 5 to 7 milliseconds, this difference is completely invisible to users given that token generation rates (10\u201312ms per token) and model inference bottlenecks vastly outweigh transport overhead [7]. Furthermore, because LLM generation is strictly unidirectional (client sends a prompt, server streams text back), SSE natively fits the pattern without requiring the bidirectional complexity of WebSockets [9]. SSE also benefits from standard HTTP-level compression like gzip or deflate, which significantly reduces wire size for text-heavy streams [1]. Finally, infrastructure factors heavily favor SSE: it runs seamlessly through standard corporate proxies and firewalls without the connection handshake issues sometimes caused by WebSockets [6, 9], and under HTTP/2, its previous connection limitations are eliminated via multiplexing [1, 5]."
+  },
+  {
+    "id": 7,
+    "category": "clean",
+    "query": "How do vector databases handle approximate nearest neighbor search?",
+    "passed": true,
+    "reason": "got 9 citations, needed 1",
+    "latency_s": 13.04,
+    "tokens_used": 5726,
+    "answer": "Vector databases handle Approximate Nearest Neighbor (ANN) search by trading absolute mathematical precision for significantly faster retrieval speeds, organizing vector spaces to bypass brute-force comparisons [1, 2]. \n\nTo achieve this, they employ structured indexing algorithms such as Hierarchical Navigable Small World (HNSW), which uses multi-layer graphs to greedily navigate from sparse top layers down to dense bottom layers, and Inverted File (IVF), which clusters vectors and restricts query-time distance calculations to only the closest clusters [3, 4, 6]. When memory is constrained by massive datasets, techniques like Product Quantization (PQ) compress vectors to drastically reduce RAM usage, sometimes resulting in a slight trade-off in accuracy [2, 7, 9]. Users can dynamically balance this three-way tradeoff between speed, recall, and memory by tuning specific parameters\u2014such as `efSearch` in HNSW or `nprobe` in IVF [5, 7]."
+  },
+  {
+    "id": 8,
+    "category": "clean",
+    "query": "What's the difference between semantic search and keyword search?",
+    "passed": true,
+    "reason": "got 9 citations, needed 1",
+    "latency_s": 13.22,
+    "tokens_used": 5331,
+    "answer": "The fundamental difference between semantic search and keyword search lies in how they process and evaluate user queries: keyword search relies on literal, exact text matching, whereas semantic search focuses on the underlying intent, context, and conceptual meaning [1, 2, 4, 6]. \n\nKeyword search operates by breaking queries into independent tokens and searching for exact text matches, making it efficient for precise lookups like part numbers, codes, or structured identifiers [2, 7, 8, 9]. However, it struggles with synonyms, variations, and human error, often resulting in false negatives or irrelevant results due to a lack of contextual awareness [1, 2, 3]. In contrast, semantic search leverages machine learning and natural language processing\u2014such as vector embeddings\u2014to map concepts into a multi-dimensional space [4, 6]. This allows the system to successfully retrieve relevant results even when the exact keywords do not overlap, gracefully handling synonyms, paraphrasing, and natural language queries [4, 7, 8]."
+  },
+  {
+    "id": 9,
+    "category": "multi_hop",
+    "query": "Which Indian AI startups have raised funding in the last year, and what are they building?",
+    "passed": true,
+    "reason": "got 9 citations, needed 3",
+    "latency_s": 15.23,
+    "tokens_used": 7588,
+    "answer": "India's AI startup ecosystem has experienced significant funding momentum, setting records in early 2026 [2]. Several Indian AI startups have secured prominent funding rounds and are building innovative solutions across various sectors:\n\n* **Neysa:** Dominated headlines with a massive $600 million funding deal [2].\n* **Portkey:** Raised $15 million [2].\n* **Nurex:** Secured $14.7 million [2].\n* **Gnani AI:** Raised $10 million [2] to advance its work in voice AI and regional language assistants [2, 6].\n* **Pinegap:** Secured an $8 million Series A round led by Stellaris Venture Partners to build AI agents that automate equity research tasks for hedge funds and institutional investors [3].\n* **Kily:** Raised $3.15 million in a round led by Sorin Investments to build AI agents managing digital commerce operations for consumer brands [3].\n* **Consint.AI:** Raised $2.31 million in a Series A round for insurtech solutions [3]."
+  },
+  {
+    "id": 10,
+    "category": "multi_hop",
+    "query": "How does Sarvam AI's approach to sovereign AI compare to other Indian LLM providers?",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 12.62,
+    "tokens_used": 6225,
+    "answer": "Sarvam AI approaches sovereign AI by constructing a comprehensive, full-stack ecosystem spanning compute infrastructure, speech systems, foundation models (such as the Sarvam-30B and Sarvam-105B models), and real-world enterprise and government applications [1, 3, 8]. Founded by Vivek Raghavan and Pratyush Kumar, the company focuses heavily on native support for India's 22 official languages, code-mixed speech, and cost-conscious innovation tailored for a population-scale digital backbone [2, 3, 5, 9]. \n\nCompared to other Indian LLM providers and global competitors, Sarvam sets itself apart through deep integration across the entire AI stack and open-source model releases under the Apache License [1, 8]. While competitors like Krutrim (founded by Ola's Bhavish Aggarwal) also focus on Indic language models and building a complete domestic AI computing stack\u2014including plans for in-house chip manufacturing and data centers [5, 6]\u2014Sarvam distinguishes its ecosystem with specialized voice-first models (like Bulbul V3) and selection as a primary startup under the government's IndiaAI Mission to develop domestic foundation models [3, 7, 8]."
+  },
+  {
+    "id": 11,
+    "category": "multi_hop",
+    "query": "Trace the connection between a company's recent funding round and its competitors' responses",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 21.59,
+    "tokens_used": 5065,
+    "answer": "I'm assuming you mean OpenAI's multi-billion dollar funding rounds and the corresponding moves made by industry rivals like Google; please let me know if you had a different company in mind.\n\nOpenAI's massive capital raises\u2014including an $11 billion initial close toward a larger round and extensive backing from major tech giants\u2014have heightened the race for enterprise customers, cloud capacity, and developer workflows [1, 4]. In response to the dominant Microsoft-NVIDIA-Oracle-OpenAI symbiotic chain, competitors have scrambled to secure their own strategic alliances and infrastructure [5]. Specifically, Google has countered this powerful bloc by forging a major partnership with Anthropic, effectively bringing Anthropic under its wing to hedge bets in the large language model space [5]. Furthermore, this competitive pressure has driven rivals to supply alternative computing resources, such as Google providing its cost-competitive TPUs to help alleviate Anthropic's compute shortages [6]."
+  },
+  {
+    "id": 12,
+    "category": "multi_hop",
+    "query": "What tools do leading AI agent frameworks expose via MCP, and how do they differ?",
+    "passed": true,
+    "reason": "got 9 citations, needed 2",
+    "latency_s": 13.19,
+    "tokens_used": 4981,
+    "answer": "Model Context Protocol (MCP) has rapidly emerged as an industry standard supported by major AI agent frameworks like LangChain/LangGraph, CrewAI, Microsoft Agent Framework, LlamaIndex, the OpenAI Agent SDK, and the Claude Agent SDK [1, 2]. \n\nMCP servers expose capabilities\u2014such as resources, prompts, and callable tools defined with JSON Schema inputs and outputs\u2014over standardized interfaces like stdio, HTTP, or Server-Sent Events (SSE) [4, 7]. Traditional framework-native tools (like those in LangChain) are tightly coupled Python or TypeScript objects defined directly inside an application's codebase [3, 7]. In contrast, MCP tools live externally as decoupled processes that agents can dynamically discover, govern, and execute at runtime across different vendors, models, and environments without requiring pre-written, custom integration code [5, 7, 8]."
+  },
+  {
+    "id": 13,
+    "category": "ambiguous",
+    "query": "is faiss still good",
+    "passed": false,
+    "reason": "answered confidently without flagging ambiguity",
+    "latency_s": 12.7,
+    "tokens_used": 5694,
+    "answer": "Yes, **Faiss is still considered an exceptional tool**, though its role depends heavily on whether you need a high-speed search library or a full production database [4], [7]. Developed by Meta AI Research, Faiss remains a gold standard for high-performance approximate nearest-neighbor (ANN) search, clustering, and dense vector compression, offering state-of-the-art CPU and GPU implementations that can efficiently scale to billions of vectors [1], [2], [8], [9]. \n\nHowever, because Faiss is an in-process library rather than a full vector database, it lacks built-in features like a server architecture, metadata filtering, live upserts, access control, and native replication [4]. While full-featured vector databases (such as Pinecone, Milvus, Qdrant, or Weaviate) wrap these persistence and management layers around production systems, Faiss is still widely recommended and heavily used for research, benchmarking, local prototyping, and static datasets where raw search speed and memory optimization are paramount [4], [6]."
+  },
+  {
+    "id": 14,
+    "category": "ambiguous",
+    "query": "compare the two vector db thingies everyone's using now",
+    "passed": true,
+    "reason": "handled ambiguity/false premise appropriately",
+    "latency_s": 10.89,
+    "tokens_used": 5691,
+    "answer": "I'm assuming you mean a comparison between Pinecone and Milvus, the two prominent vector database solutions; please let me know if you had a different comparison in mind. \n\nPinecone is a fully managed, SaaS-only vector database that prioritizes developer velocity, ease of setup, and low operational overhead with predictable usage-based pricing [2, 5, 6]. In contrast, Milvus is a powerful, open-source vector database built for billion-scale similarity search that offers extensive deployment flexibility\u2014ranging from local setups and Kubernetes-native clusters to managed cloud options [1, 4]. While Pinecone eliminates infrastructure management for its users, Milvus rewards teams with platform engineering capacity by providing granular control over indexing, hardware placement, and a wide array of supported data types and SDKs [1, 4, 5]."
+  },
+  {
+    "id": 15,
+    "category": "ambiguous",
+    "query": "what changed with agents this year",
+    "passed": false,
+    "reason": "answered confidently without flagging ambiguity",
+    "latency_s": 13.36,
+    "tokens_used": 5512,
+    "answer": "Major advancements in agentic AI frameworks, architectures, and production strategies have transformed the landscape:\n\n* **Framework Consolidation and Growth:** Major AI labs and platforms shipped rapid updates, notably Microsoft merging AutoGen and Semantic Kernel into the unified Microsoft Agent Framework (reaching 1.0 GA on April 3, 2026), alongside expanding multi-language toolkits from Google and widespread adoption of tools like CrewAI and LangGraph [1, 2].\n* **Graph-Based and Event-Driven Architecture:** Frameworks increasingly converged on graph-based state management (such as LangGraph and Google ADK) and event-driven architectures to decouple inference and scale enterprise systems reliably [2, 3, 5].\n* **Shift to Multi-Agent Systems:** Enterprises widely embraced multi-agent architectures for complex workflows\u2014such as planner-executor patterns\u2014though production insights show that many simpler projects remain better suited to single-agent or basic automated workflows [4, 6].\n* **Enhanced Capabilities:** Underlying models improved significantly in reasoning, longer-running tasks, advanced tool use, and reliable agentic loops that allow models to plan, execute, observe, and self-correct [7, 8, 9]."
+  },
+  {
+    "id": 16,
+    "category": "ambiguous",
+    "query": "why did that funding thing happen",
+    "passed": true,
+    "reason": "handled ambiguity/false premise appropriately",
+    "latency_s": 16.25,
+    "tokens_used": 13328,
+    "answer": "I'm assuming you mean the major venture capital and startup funding boom occurring across the tech and AI sectors in 2026; please let me know if you had a different event in mind. \n\nVenture capital funding has surged dramatically, reaching $300 billion across 6,000 startups due to eased interest rates and plentiful private market liquidity [1, 2]. This funding follows a \"barbell-shaped\" pattern, characterized by massive megadeals for late-stage and deep-tech/AI infrastructure winners on one end, and active investments in vetted early-stage startups on the other [1, 2]. Growth capital and major institutional investors are heavily backing AI and enterprise agentic systems that integrate directly into core business operations, such as fintech and robotics [3]. Consequently, these AI-fueled technology investments have become a primary driver of economic growth, though some economists warn of a potential tech bubble [4, 6]."
+  },
+  {
+    "id": 17,
+    "category": "ambiguous",
+    "query": "is it better to build or buy for this",
+    "passed": true,
+    "reason": "handled ambiguity/false premise appropriately",
+    "latency_s": 10.4,
+    "tokens_used": 5979,
+    "answer": "I'm assuming you mean whether your business should build or buy software, technology, or systems, but please let me know if you had a different context in mind. \n\nWhen deciding whether to build or buy, organizations must weigh strategic factors, application characteristics, costs, and risks [4]. Buying a commercial solution is typically faster and more cost-effective for standard processes, and is generally recommended when a vendor meets more than 80% of your operational needs [1, 9]. Conversely, building in-house provides greater customization and control, making it the better choice if the technology enables core proprietary processes that offer a competitive edge [1, 8]. However, building also carries significant long-term maintenance burdens, hidden costs, and risks of exceeding budgets and timelines [2]. To balance these trade-offs, many organizations adopt a hybrid approach\u2014buying a base platform to validate the business case and extending or building selectively where unique capabilities are required [8, 9]."
+  },
+  {
+    "id": 18,
+    "category": "false_premise",
+    "query": "since GPT-5 replaced all vector databases, what's the new standard?",
+    "passed": false,
+    "reason": "answered confidently without flagging ambiguity",
+    "latency_s": 52.05,
+    "tokens_used": 5399,
+    "answer": "The premise of the question is incorrect and unsupported, as GPT-5 has not replaced all vector databases. Instead, advanced AI models like GPT-5 rely heavily on external retrieval architectures and tools\u2014such as retrieval-augmented generation (RAG)\u2014to access up-to-date information, handle large context windows, and execute agentic workflows [4]. \n\nVector databases remain essential, cost-effective components for managing and searching high-dimensional data and unstructured domain knowledge outside of an LLM's internal weights [7]. The standard landscape features a variety of options tailored to specific workloads rather than a single universal winner [2, 3]. Popular solutions include Chroma for rapid prototyping, Pinecone and Milvus for production scale, pgvector for existing PostgreSQL stacks, and Weaviate or Qdrant for hybrid search and advanced filtering [1, 2, 3]."
+  }
+]

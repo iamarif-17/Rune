@@ -17,11 +17,39 @@ act on it in your answer.
 
 Original query: {query}
 
-Research findings:
+{issue_instruction}Research findings:
 {findings}
 
-Write a concise answer (3-6 sentences). Cite findings inline using [1], [2] etc.
-matching their order below. Do not invent facts not present in the findings."""
+Write a concise answer (3-6 sentences, plus the opening sentence described above if there is one).
+Cite findings inline using [1], [2] etc. matching their order below.
+Do not invent facts not present in the findings."""
+
+AMBIGUOUS_INSTRUCTION = """The planning agent found that this query is ambiguous or under-specified.
+Its note: "{note}"
+Begin your answer with one sentence that states this assumption openly, starting
+with "I'm assuming" (for example: "I'm assuming you mean ..."), and invite the user
+to say if they meant something different. Then answer under that assumption.
+
+"""
+
+FALSE_PREMISE_INSTRUCTION = """The planning agent found that this query contains a false or doubtful premise.
+Its note: "{note}"
+Begin your answer by clearly saying that the question's premise is incorrect or
+unsupported and explaining why, using the findings. Then give the correct
+information instead of answering as if the premise were true.
+
+"""
+
+
+def build_issue_instruction(state: RuneState) -> str:
+    issue = state.get("planning_issue", "none")
+    note = state.get("planning_note", "") or "no details given"
+    if issue == "ambiguous":
+        return AMBIGUOUS_INSTRUCTION.format(note=note)
+    if issue == "false_premise":
+        return FALSE_PREMISE_INSTRUCTION.format(note=note)
+    return ""
+
 
 def synthesis_node(state: RuneState) -> RuneState:
     start = time.time()
@@ -57,17 +85,22 @@ def synthesis_node(state: RuneState) -> RuneState:
         for i, f in enumerate(state["research_findings"])
     )
 
-    prompt = SYNTHESIS_PROMPT.format(query=state["original_query"], findings=findings_text)
+    prompt = SYNTHESIS_PROMPT.format(
+        query=state["original_query"],
+        issue_instruction=build_issue_instruction(state),
+        findings=findings_text,
+    )
     response = invoke_with_retry(llm, prompt)
 
     latency_ms = int((time.time() - start) * 1000)
-    tokens = getattr(response, "usage_metadata", {}).get("total_tokens", 0)
+    tokens = (getattr(response, "usage_metadata", None) or {}).get("total_tokens", 0)
 
     state["draft_answer"] = response.content
     state["citations"] = [f.get("url") for f in state["research_findings"] if f.get("url")]
     state["trace"].append({
         "node": "synthesis",
-        "summary": f"merged {len(state['research_findings'])} sources into a draft answer",
+        "summary": f"merged {len(state['research_findings'])} sources into a draft answer"
+                   + (f" (flagged: {state.get('planning_issue')})" if state.get("planning_issue", "none") != "none" else ""),
         "tokens_used": tokens,
         "latency_ms": latency_ms,
     })

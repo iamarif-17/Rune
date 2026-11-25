@@ -24,8 +24,32 @@ Check for:
 - Contradictions between findings that weren't addressed
 - Missing citations for factual claims
 
+Do NOT flag an opening sentence that states an assumption about what the user
+meant (for example "I'm assuming you mean ...") or says the question's premise is
+incorrect. Those sentences are intentional and do not need citations.
+
 Respond with JSON only: {{"passed": true/false, "notes": [{{"issue": "...", "detail": "...", "severity": "minor|major"}}]}}
 If there are no issues, return {{"passed": true, "notes": []}}."""
+
+
+def _parse_critique(raw: str) -> dict:
+    """Parse the critique JSON, tolerating markdown fences and missing keys.
+    On any parse failure, default to passed so one bad reply never kills a run."""
+    raw = (raw or "").strip()
+    if raw.startswith("```"):
+        raw = raw.strip("`")
+        if raw.lower().startswith("json"):
+            raw = raw[4:].strip()
+    try:
+        result = json.loads(raw)
+        if not isinstance(result, dict):
+            raise ValueError
+    except (json.JSONDecodeError, ValueError):
+        return {"passed": True, "notes": []}
+    return {
+        "passed": bool(result.get("passed", True)),
+        "notes": result.get("notes", []) or [],
+    }
 
 
 def critique_node(state: RuneState) -> RuneState:
@@ -57,13 +81,10 @@ def critique_node(state: RuneState) -> RuneState:
     prompt = CRITIQUE_PROMPT.format(draft=state["draft_answer"], findings=findings_text)
     response = invoke_with_retry(llm, prompt)
 
-    try:
-        result = json.loads(response.content)
-    except json.JSONDecodeError:
-        result = {"passed": True, "notes": []}
+    result = _parse_critique(response.content)
 
     latency_ms = int((time.time() - start) * 1000)
-    tokens = getattr(response, "usage_metadata", {}).get("total_tokens", 0)
+    tokens = (getattr(response, "usage_metadata", None) or {}).get("total_tokens", 0)
 
     state["critique_passed"] = result["passed"]
     state["critique_notes"] = result["notes"]

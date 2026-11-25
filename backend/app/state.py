@@ -30,10 +30,12 @@ class RuneState(TypedDict):
     # input
     original_query: str
     session_id: str
-    depth: str      
+    depth: str
 
     # planner output
     sub_tasks: List[str]
+    planning_issue: str      # "none" | "ambiguous" | "false_premise"
+    planning_note: str       # the assumption made, or the premise that is wrong
 
     # research output
     research_findings: List[ResearchFinding]

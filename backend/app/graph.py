@@ -56,6 +56,8 @@ def _initial_state(query: str, session_id: str, depth: str = "deep") -> RuneStat
         "session_id": session_id,
         "depth": depth,
         "sub_tasks": [],
+        "planning_issue": "none",
+        "planning_note": "",
         "research_findings": [],
         "draft_answer": "",
         "citations": [],

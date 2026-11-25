@@ -12,19 +12,19 @@ import os
 
 NODE_CONFIG = {
     "planner": {
-        "model": os.getenv("PLANNER_MODEL", "gemini-1.5-flash"),
+        "model": os.getenv("PLANNER_MODEL", "gemini-3.5-flash-lite"),
         "temperature": 0.25,
     },
     "research": {
-        "model": os.getenv("RESEARCH_MODEL", "gemini-1.5-flash"),
+        "model": os.getenv("RESEARCH_MODEL", "gemini-3.5-flash-lite"),
         "temperature": 0.15,
     },
     "synthesis": {
-        "model": os.getenv("SYNTHESIS_MODEL", "gemini-1.5-pro"),
+        "model": os.getenv("SYNTHESIS_MODEL", "gemini-3.5-flash-lite"),
         "temperature": 0.5,
     },
     "critique": {
-        "model": os.getenv("CRITIQUE_MODEL", "gemini-1.5-flash"),
+        "model": os.getenv("CRITIQUE_MODEL", "gemini-3.5-flash-lite"),
         "temperature": 0.15,
     },
 }
